@@ -81,13 +81,4 @@ if st.button("Predict Performance"):
         "%"
     )
 
-    st.write(
-        "Training Hours:",
-        training_hours
-    )
-
-    st.write(
-        "Attendance:",
-        attendance,
-        "%"
-    )
+    
