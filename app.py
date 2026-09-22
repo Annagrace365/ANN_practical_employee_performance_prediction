@@ -1,3 +1,4 @@
+
 import streamlit as st
 import numpy as np
 import tensorflow as tf
@@ -16,6 +17,10 @@ st.title("📊 Employee Performance Predictor")
 st.write(
     "Enter Training Hours and Attendance to predict employee performance."
 )
+
+
+# Attendance threshold
+attendance_threshold = 50
 
 
 # Load trained ANN model
@@ -42,43 +47,61 @@ attendance = st.number_input(
 )
 
 
+# Display attendance requirement
+st.info(
+    f"Minimum Attendance Required: {attendance_threshold}%"
+)
+
+
 # Prediction button
 if st.button("Predict Performance"):
 
-    # Prepare input
-    input_data = np.array([
-        [training_hours, attendance]
-    ])
+    # Check attendance threshold first
+    if attendance < attendance_threshold:
 
+        st.warning(
+            f"Minimum attendance required is "
+            f"{attendance_threshold}%. "
+            "Performance prediction cannot be considered."
+        )
 
-    # ANN prediction
-    probability = model.predict(
-        input_data,
-        verbose=0
-    )[0][0]
-
-
-    # Convert probability into result
-    if probability >= 0.5:
-        result = "Good"
     else:
-        result = "Needs Improvement"
+
+        # Prepare input
+        input_data = np.array([
+            [training_hours, attendance]
+        ])
 
 
-    # Display result
-    st.subheader("Prediction Result")
-
-    if result == "Good":
-        st.success("Performance: GOOD")
-    else:
-        st.warning("Performance: NEEDS IMPROVEMENT")
+        # ANN prediction
+        probability = model.predict(
+            input_data,
+            verbose=0
+        )[0][0]
 
 
-    # Display probability
-    st.write(
-        "Good Probability:",
-        round(float(probability) * 100, 2),
-        "%"
-    )
+        # Convert probability into result
+        if probability >= 0.5:
+            result = "Good"
+        else:
+            result = "Needs Improvement"
 
-    
+
+        # Display result
+        st.subheader("Prediction Result")
+
+
+        if result == "Good":
+            st.success("Performance: GOOD")
+        else:
+            st.warning("Performance: NEEDS IMPROVEMENT")
+
+
+        # Display probability
+        st.write(
+            "Good Probability:",
+            round(float(probability) * 100, 2),
+            "%"
+        )
+
+
