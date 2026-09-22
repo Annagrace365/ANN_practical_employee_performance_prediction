@@ -59,7 +59,7 @@ if st.button("Predict Performance"):
         st.warning("Performance: NEEDS IMPROVEMENT")
 
         st.write(
-            f"Attendance ({attendance}%) is less than the "
+            f"Attendance {attendance}% is less than the "
             f"minimum required attendance of {attendance_threshold}%."
         )
 
