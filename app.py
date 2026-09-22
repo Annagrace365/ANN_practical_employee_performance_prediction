@@ -40,10 +40,10 @@ training_hours = st.number_input(
 
 attendance = st.number_input(
     "Attendance (%)",
-    min_value=0.0,
-    max_value=100.0,
-    value=75.0,
-    step=1.0
+    min_value=0,
+    max_value=100,
+    value=75,
+    step=1
 )
 
 
