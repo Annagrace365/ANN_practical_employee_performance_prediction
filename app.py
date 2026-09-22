@@ -59,7 +59,7 @@ if st.button("Predict Performance"):
 
 
     # Convert probability into result
-    if probability >= 0.5 and attendance>49:
+    if probability >= 0.5:
         result = "Good"
     else:
         result = "Needs Improvement"
