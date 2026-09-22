@@ -100,6 +100,3 @@ if st.button("Predict Performance"):
             round(float(probability) * 100, 2),
             "%"
         )
-
-
-```
