@@ -47,22 +47,20 @@ attendance = st.number_input(
 )
 
 
-# Display attendance requirement
-st.info(
-    f"Minimum Attendance Required: {attendance_threshold}%"
-)
-
 
 # Prediction button
 if st.button("Predict Performance"):
 
-    # Check attendance threshold first
+    # Check attendance threshold
     if attendance < attendance_threshold:
 
-        st.warning(
-            f"Minimum attendance required is "
-            f"{attendance_threshold}%. "
-            "Performance prediction cannot be considered."
+        st.subheader("Prediction Result")
+
+        st.warning("Performance: NEEDS IMPROVEMENT")
+
+        st.write(
+            f"Attendance ({attendance}%) is less than the "
+            f"minimum required attendance of {attendance_threshold}%."
         )
 
     else:
@@ -90,7 +88,6 @@ if st.button("Predict Performance"):
         # Display result
         st.subheader("Prediction Result")
 
-
         if result == "Good":
             st.success("Performance: GOOD")
         else:
@@ -105,3 +102,4 @@ if st.button("Predict Performance"):
         )
 
 
+```
